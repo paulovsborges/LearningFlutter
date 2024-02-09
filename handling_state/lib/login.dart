@@ -9,16 +9,26 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        const SizedBox(
-          height: 40,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Column(
+              children: [
+                Text(Screens.login.label),
+                ElevatedButton(
+                    onPressed: () {
+                      context.pushReplacement(Screens.home.route);
+                    },
+                    child: const Text('Go to home')),
+                const SizedBox(
+                  height: 100,
+                )
+              ],
+            )
+          ],
         ),
-        Text(Screens.login.label),
-        ElevatedButton(
-            onPressed: () {
-              context.pushReplacement(Screens.home.route);
-            },
-            child: const Text('Go to home'))
       ],
     ));
   }
