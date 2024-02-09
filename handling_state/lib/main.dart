@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:handling_state/login.dart';
+import 'package:provider/provider.dart';
+
+import 'home.dart';
 
 void main() {
   runApp(const MyApp());
@@ -31,25 +34,15 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text(Screens.home.label),
-      ),
-    );
-  }
-}
-
 GoRouter getRouter() {
   return GoRouter(initialLocation: Screens.login.route, routes: [
     GoRoute(
       path: Screens.login.route,
       builder: (context, state) {
-        return const LoginScreen();
+        return ChangeNotifierProvider(
+          create: (context) => Counter(),
+          child: const LoginScreen(),
+        );
       },
     ),
     GoRoute(
