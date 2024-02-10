@@ -25,30 +25,38 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        home: SafeArea(
-      child: MaterialApp.router(
-        title: 'navigation app',
-        routerConfig: getRouter(),
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.black12,
       ),
-    ));
+      home: SafeArea(
+        child: MaterialApp.router(
+          title: 'navigation app',
+          routerConfig: getRouter(),
+        ),
+      ),
+    );
   }
 }
 
 GoRouter getRouter() {
-  return GoRouter(initialLocation: Screens.login.route, routes: [
-    GoRoute(
-      path: Screens.login.route,
-      builder: (context, state) {
-        return ChangeNotifierProvider(
-          create: (context) => Counter(),
-          child: const LoginScreen(),
-        );
-      },
-    ),
-    GoRoute(
-        path: Screens.home.route,
+  return GoRouter(
+    initialLocation: Screens.home.route,
+    routes: [
+      GoRoute(
+        path: Screens.login.route,
         builder: (context, state) {
-          return const HomeScreen();
-        }),
-  ]);
+          return ChangeNotifierProvider(
+            create: (context) => Counter(),
+            child: const LoginScreen(),
+          );
+        },
+      ),
+      GoRoute(
+          path: Screens.home.route,
+          builder: (context, state) {
+            return const HomeScreenContainer();
+          }),
+    ],
+  );
 }
