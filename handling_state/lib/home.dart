@@ -43,6 +43,15 @@ class HomeScreen extends StatelessWidget {
   final int navigationIndex;
   final Function(int index) onTapCallback;
 
+  void _changeToPage(int newPage) {
+    onTapCallback(newPage);
+    _pageController.animateToPage(
+      newPage,
+      duration: const Duration(milliseconds: 200),
+      curve: Curves.fastLinearToSlowEaseIn,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +59,43 @@ class HomeScreen extends StatelessWidget {
         title: const Text('My App bar'),
         centerTitle: true,
         backgroundColor: Colors.white,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            const DrawerHeader(
+              child: Text('This is the header'),
+            ),
+            const UserAccountsDrawerHeader(
+              accountName: Text('testing name'),
+              accountEmail: Text('testing@gmail.com'),
+            ),
+            ListTile(
+              title: Text('Page 1'),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                _changeToPage(0);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Page 2'),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                _changeToPage(1);
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Page 3'),
+              trailing: Icon(Icons.arrow_forward),
+              onTap: () {
+                _changeToPage(2);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       body: PageView(
         controller: _pageController,
@@ -82,12 +128,7 @@ class HomeScreen extends StatelessWidget {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: navigationIndex,
         onTap: (index) {
-          onTapCallback(index);
-          _pageController.animateToPage(
-            index,
-            duration: const Duration(milliseconds: 200),
-            curve: Curves.fastLinearToSlowEaseIn,
-          );
+          _changeToPage(index);
         },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Item 1'),
