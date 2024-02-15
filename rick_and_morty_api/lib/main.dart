@@ -1,30 +1,21 @@
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_api/app_bar.dart';
 import 'package:rick_and_morty_api/character.dart';
-import 'package:rick_and_morty_api/screens/characters_list/character_item.dart';
 import 'package:rick_and_morty_api/screens/characters_list/characters_list.dart';
 import 'package:rick_and_morty_api/service/fetch_api.dart';
 
 void main() {
-  var fetcher = RickAndMortyApi();
-  //
-  // fetcher.fetchCharacters().forEach((element) {
-  //   element.map((e) => e.name).forEach((name) {
-  //     print(name);
-  //   });
-  // });
-
   runApp(const MyApp());
 }
 
 class CubitCharacters extends Cubit<List<Character>> {
-  CubitCharacters() : super([]);
+  CubitCharacters({required this.api}) : super([]);
+
+  final RickAndMortyApi api;
 
   void getCharacters() {
-    var charactersSource = RickAndMortyApi();
-    charactersSource.fetchCharacters().forEach((characters) {
+    api.fetchCharacters().forEach((characters) {
       emit(characters);
     });
   }
@@ -64,7 +55,7 @@ class MyHomePage extends StatelessWidget {
             height: 10,
           ),
           BlocProvider(
-            create: (_) => CubitCharacters(),
+            create: (_) => CubitCharacters(api: RickAndMortyApi()),
             child: const CharactersList(),
           )
         ],
