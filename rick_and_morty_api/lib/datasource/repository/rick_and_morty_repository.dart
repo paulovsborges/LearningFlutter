@@ -1,14 +1,8 @@
-import 'dart:convert';
-import 'dart:io';
-
+import 'package:rick_and_morty_api/datasource/service/rick_and_morty_api.dart';
 import 'package:http/http.dart' as http;
-import 'package:rick_and_morty_api/domain/entity/data_state.dart';
 
-import '../../domain/entity/character.dart';
-import '../dto/rick_and_morty_dto.dart';
-
-class RickAndMortyApi {
-  RickAndMortyApi();
+class RickAndMortyRepository {
+  // final RickAndMortyApi _api = RickAndMortyApi();
 
   final String baseUrl = "https://rickandmortyapi.com/api/";
 
@@ -27,5 +21,4 @@ class RickAndMortyApi {
     //   print("Error $e");
     // }
   }
-
 }

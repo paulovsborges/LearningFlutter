@@ -1,29 +1,15 @@
-import 'package:equatable/equatable.dart';
+import 'package:rick_and_morty_api/domain/entity/character.dart';
 
-import 'character.dart';
+abstract class DataState {}
 
-abstract class DataState extends Equatable {}
+class InitialState<Void> extends DataState {}
 
-class InitialState extends DataState {
-  @override
-  List<Object?> get props => [];
-}
+class LoadingState<Void> extends DataState {}
 
-class LoadingState extends DataState {
-  @override
-  List<Object?> get props => [];
-}
-
-class Success<T> extends DataState {
+class Success extends DataState {
   Success({required this.data});
 
-  final T data;
-
-  @override
-  List<Object?> get props => [data];
+  final List<Character> data;
 }
 
-class Error extends DataState {
-  @override
-  List<Object?> get props => [];
-}
+class ErrorState<Void> extends DataState {}
