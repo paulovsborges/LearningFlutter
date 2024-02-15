@@ -1,11 +1,33 @@
+import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_api/app_bar.dart';
 import 'package:rick_and_morty_api/character.dart';
 import 'package:rick_and_morty_api/screens/characters_list/character_item.dart';
 import 'package:rick_and_morty_api/screens/characters_list/characters_list.dart';
+import 'package:rick_and_morty_api/service/fetch_api.dart';
 
 void main() {
+  var fetcher = RickAndMortyApi();
+  //
+  // fetcher.fetchCharacters().forEach((element) {
+  //   element.map((e) => e.name).forEach((name) {
+  //     print(name);
+  //   });
+  // });
+
   runApp(const MyApp());
+}
+
+class CubitCharacters extends Cubit<List<Character>> {
+  CubitCharacters() : super([]);
+
+  void getCharacters() {
+    var charactersSource = RickAndMortyApi();
+    charactersSource.fetchCharacters().forEach((characters) {
+      emit(characters);
+    });
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -17,21 +39,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -47,58 +54,6 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = const Color.fromARGB(255, 40, 43, 50);
-    List<Character> characters = [
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-      Character(
-          name: "Toxic Rick",
-          image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-          status: "Dead",
-          gender: "Male"),
-    ];
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -108,7 +63,10 @@ class MyHomePage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          CharactersList(characters: characters),
+          BlocProvider(
+            create: (_) => CubitCharacters(),
+            child: const CharactersList(),
+          )
         ],
       ),
     );
