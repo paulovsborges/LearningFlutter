@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_api/app_bar.dart';
-import 'package:rick_and_morty_api/character.dart';
+import 'package:rick_and_morty_api/domain/character.dart';
 import 'package:rick_and_morty_api/screens/characters_list/characters_list.dart';
 import 'package:rick_and_morty_api/service/fetch_api.dart';
 
@@ -45,6 +45,18 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Color backgroundColor = const Color.fromARGB(255, 40, 43, 50);
+
+    // return Center(
+    //   child: Column(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     crossAxisAlignment: CrossAxisAlignment.stretch,
+    //     children: [
+    //       LinearProgressIndicator(),
+    //       CircularProgressIndicator(),
+    //       RefreshProgressIndicator()
+    //     ],
+    //   ),
+    // );
 
     return Scaffold(
       backgroundColor: backgroundColor,

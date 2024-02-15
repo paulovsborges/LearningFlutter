@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty_api/main.dart';
 import 'package:rick_and_morty_api/screens/characters_list/character_item.dart';
 
-import '../../character.dart';
+import '../../domain/character.dart';
 
 class CharactersList extends StatelessWidget {
   const CharactersList({super.key});

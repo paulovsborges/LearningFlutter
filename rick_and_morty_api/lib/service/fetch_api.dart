@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:rick_and_morty_api/character.dart';
+import 'package:rick_and_morty_api/domain/character.dart';
 
 class RickAndMortyApi {
   RickAndMortyApi();
