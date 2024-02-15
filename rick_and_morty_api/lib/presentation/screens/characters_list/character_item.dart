@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty_api/domain/character.dart';
+import 'package:rick_and_morty_api/domain/entity/character.dart';
 
 class CharacterItem extends StatelessWidget {
   const CharacterItem({super.key, required this.character});

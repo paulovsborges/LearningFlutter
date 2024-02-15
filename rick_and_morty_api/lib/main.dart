@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty_api/app_bar.dart';
-import 'package:rick_and_morty_api/domain/character.dart';
-import 'package:rick_and_morty_api/screens/characters_list/characters_list.dart';
-import 'package:rick_and_morty_api/service/fetch_api.dart';
+import 'package:rick_and_morty_api/presentation/app_bar.dart';
+import 'package:rick_and_morty_api/domain/entity/character.dart';
+import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list.dart';
+
+import 'datasource/service/rick_and_morty_api.dart';
 
 void main() {
   runApp(const MyApp());
