@@ -48,18 +48,6 @@ class RickAndMortyDTO {
 
     return RickAndMortyDTO(results: characters.toList());
   }
-
-  final String t =
-      """'{"name": "John", "age": 30, "email": "john@example.com", "results" : [ {"id" : 1, "name" : "john doe"}]}'""";
-
-// factory RickAndMortyDTO.fromJson(Map<String, dynamic> json) {
-//   return switch (json) {
-//     {'results': List<RickAndMortyResultDTO> results} => RickAndMortyDTO(
-//         results: results,
-//       ),
-//     _ => throw const FormatException('Failed to parse'),
-//   };
-// }
 }
 
 class RickAndMortyResultDTO {
@@ -78,9 +66,18 @@ class RickAndMortyResultDTO {
   final String image;
 
   factory RickAndMortyResultDTO.fromJson(Map<String, dynamic> json) {
+    var charactersName = json['name'] as String;
+
+    if (charactersName.length > 15) {
+      try {
+        charactersName =
+            charactersName.replaceRange(15, charactersName.length, '...');
+      } catch (e) {}
+    }
+
     return RickAndMortyResultDTO(
       id: json['id'],
-      name: json['name'],
+      name: charactersName,
       status: json['status'],
       gender: json['gender'],
       image: json['image'],
