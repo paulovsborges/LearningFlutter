@@ -1,14 +1,18 @@
 import 'dart:convert';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:rick_and_morty_api/datasource/repository/rick_and_morty_repository.dart';
 
 import '../../../datasource/dto/rick_and_morty_dto.dart';
 import '../../../domain/entity/character.dart';
 import '../../../domain/entity/data_state.dart';
 
-class CharactersListState extends Cubit<DataState> {
-  CharactersListState({required this.repository}) : super(InitialState()) {
+class CharactersListCubit extends Cubit<DataState> {
+
+  static const valueKey = ValueKey('CharactersListCubit');
+
+  CharactersListCubit({required this.repository}) : super(InitialState()) {
     _getCharacters();
   }
 
