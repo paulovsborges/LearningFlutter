@@ -6,8 +6,11 @@ class RickAndMortyRepository {
 
   final String baseUrl = "https://rickandmortyapi.com/api/";
 
-  Future<http.Response> fetchCharacters() async {
-    return http.get(Uri.parse("${baseUrl}character"));
+  Future<http.Response> fetchCharacters(int offset ) async {
+
+    var offsetParameter = '?page=$offset';
+
+    return http.get(Uri.parse("${baseUrl}character/$offsetParameter"));
 
     // try {
     //   if (response.statusCode == 200) {

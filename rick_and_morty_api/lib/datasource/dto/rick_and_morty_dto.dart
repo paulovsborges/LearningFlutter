@@ -1,14 +1,26 @@
 class RickAndMortyDTO {
-  RickAndMortyDTO({required this.results});
+  RickAndMortyDTO({required this.results, required this.info});
 
+  final RickAndMortyInfoDTO info;
   final List<RickAndMortyResultDTO> results;
 
   factory RickAndMortyDTO.fromJson(Map<String, dynamic> json) {
     var results = json['results'] as List;
+    var info = json['info'];
 
     var characters = results.map((e) => RickAndMortyResultDTO.fromJson(e));
+    var infoDto = RickAndMortyInfoDTO.fromJson(info);
+    return RickAndMortyDTO(info: infoDto, results: characters.toList());
+  }
+}
 
-    return RickAndMortyDTO(results: characters.toList());
+class RickAndMortyInfoDTO {
+  RickAndMortyInfoDTO({required this.pages});
+
+  final int pages;
+
+  factory RickAndMortyInfoDTO.fromJson(Map<String, dynamic> json) {
+    return RickAndMortyInfoDTO(pages: json['pages']);
   }
 }
 

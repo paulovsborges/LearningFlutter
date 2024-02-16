@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,6 +17,7 @@ class CharactersListCubit extends Cubit<DataState> {
   }
 
   final RickAndMortyRepository repository;
+  int pagesCount = 0;
 
   void _getCharacters() async {
     emit(LoadingState());
@@ -23,13 +25,23 @@ class CharactersListCubit extends Cubit<DataState> {
     await Future.delayed(const Duration(seconds: 5));
 
     try {
-      var response = await repository.fetchCharacters();
+      int offset;
+
+      if (pagesCount > 0) {
+        offset = Random().nextInt(pagesCount);
+      } else {
+        offset = Random().nextInt(42);
+      }
+
+      var response = await repository.fetchCharacters(offset);
 
       Map<String, dynamic> decoded = jsonDecode(response.body);
 
-      var results = RickAndMortyDTO.fromJson(decoded);
+      var responseEntity = RickAndMortyDTO.fromJson(decoded);
 
-      var entities = results.results.map((e) => _mapToEntity(e));
+      pagesCount = responseEntity.info.pages;
+
+      var entities = responseEntity.results.map((e) => _mapToEntity(e));
 
       emit(Success(data: entities.toList()));
     } catch (e) {

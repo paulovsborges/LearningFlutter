@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rick_and_morty_api/presentation/screens/character_details/character_details.dart';
-import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_subit.dart';
+import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_cubit.dart';
 
 import 'datasource/repository/rick_and_morty_repository.dart';
 import 'main.dart';

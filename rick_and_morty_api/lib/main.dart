@@ -6,7 +6,7 @@ import 'package:rick_and_morty_api/domain/entity/data_state.dart';
 import 'package:rick_and_morty_api/presentation/app_bar.dart';
 import 'package:rick_and_morty_api/presentation/loading_widget.dart';
 import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list.dart';
-import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_subit.dart';
+import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_cubit.dart';
 
 import 'datasource/repository/rick_and_morty_repository.dart';
 
