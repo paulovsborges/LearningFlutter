@@ -1,27 +1,18 @@
-import 'package:rick_and_morty_api/datasource/service/rick_and_morty_api.dart';
 import 'package:http/http.dart' as http;
 
 class RickAndMortyRepository {
-  // final RickAndMortyApi _api = RickAndMortyApi();
 
-  final String baseUrl = "https://rickandmortyapi.com/api/";
+  final String baseUrl = 'rickandmortyapi.com';
 
-  Future<http.Response> fetchCharacters(int offset ) async {
+  Future<http.Response> fetchCharacters(int offset) async {
+    var queryParameters = {
+      'page': offset.toString(),
+    };
 
-    var offsetParameter = '?page=$offset';
+    const endpoint = '/api/character';
 
-    return http.get(Uri.parse("${baseUrl}character/$offsetParameter"));
+    final uri = Uri.https(baseUrl, endpoint, queryParameters);
 
-    // try {
-    //   if (response.statusCode == 200) {
-    //     Map<String, dynamic> decoded = jsonDecode(response.body);
-    //
-    //     var results = RickAndMortyDTO.fromJson(decoded);
-    //
-    //     var entities = results.results.map((e) => _mapToEntity(e));
-    //   }
-    // } catch (e) {
-    //   print("Error $e");
-    // }
+    return http.get(uri);
   }
 }

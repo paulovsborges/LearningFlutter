@@ -45,6 +45,7 @@ class CharactersListCubit extends Cubit<DataState> {
 
       emit(Success(data: entities.toList()));
     } catch (e) {
+      print(e);
       emit(ErrorState());
     }
   }
