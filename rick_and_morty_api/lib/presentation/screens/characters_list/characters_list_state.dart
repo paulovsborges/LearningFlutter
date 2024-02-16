@@ -9,7 +9,6 @@ import '../../../domain/entity/character.dart';
 import '../../../domain/entity/data_state.dart';
 
 class CharactersListCubit extends Cubit<DataState> {
-
   static const valueKey = ValueKey('CharactersListCubit');
 
   CharactersListCubit({required this.repository}) : super(InitialState()) {
@@ -40,6 +39,7 @@ class CharactersListCubit extends Cubit<DataState> {
 
   Character _mapToEntity(RickAndMortyResultDTO dto) {
     return Character(
+        id: dto.id,
         name: dto.name,
         image: dto.image,
         status: dto.status,

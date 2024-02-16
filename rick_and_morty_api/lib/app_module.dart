@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:rick_and_morty_api/presentation/screens/character_details/character_details.dart';
 import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_state.dart';
 
 import 'datasource/repository/rick_and_morty_repository.dart';
@@ -16,7 +17,13 @@ class AppModule extends Module {
   void routes(RouteManager r) {
     r.child(
       '/',
-      child: (context) => const MyHomePage(),
+      child: (_) => const MyHomePage(),
+    );
+    r.child(
+      '${CharacterDetails.screenRoute}/${CharacterDetails.routeParameter}',
+      child: (_) => CharacterDetails(
+        characterId: r.args.params['id'],
+      ),
     );
   }
 }
