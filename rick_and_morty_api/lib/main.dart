@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_modular/flutter_modular.dart';
+import 'package:get_it/get_it.dart';
 import 'package:rick_and_morty_api/app_module.dart';
 import 'package:rick_and_morty_api/domain/entity/data_state.dart';
 import 'package:rick_and_morty_api/presentation/app_bar.dart';
 import 'package:rick_and_morty_api/presentation/loading_widget.dart';
+import 'package:rick_and_morty_api/presentation/screens/character_details/character_details.dart';
 import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list.dart';
 import 'package:rick_and_morty_api/presentation/screens/characters_list/characters_list_cubit.dart';
 
-import 'datasource/repository/rick_and_morty_repository.dart';
-
 main() {
-  runApp(ModularApp(module: AppModule(), child: const MyApp()));
+  AppModuleInitializer();
+  // runApp(ModularApp(module: AppModule(), child: const MyApp()));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -19,15 +20,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
+    return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      routerConfig: Modular.routerConfig,
-      builder: (context, router) {
+      routes: {
+        '/': (_) => const MyHomePage(),
+        '/character_details': (_) =>
+            const CharacterDetails()
+      },
+      builder: (context, router){
         return SafeArea(child: router!);
       },
     );
@@ -50,8 +55,7 @@ class MyHomePage extends StatelessWidget {
             height: 10,
           ),
           BlocProvider(
-            create: (context) => Modular.get<CharactersListCubit>(
-                key: CharactersListCubit.valueKey.value),
+            create: (context) => GetIt.I.get<CharactersListCubit>(),
             child: BlocBuilder<CharactersListCubit, DataState>(
               builder: (context, state) {
                 return _MainContent(

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 import '../../../domain/entity/character.dart';
 import '../character_details/character_details.dart';
@@ -20,9 +19,10 @@ class CharactersList extends StatelessWidget {
               character: characters[index],
               onCharacterClick: (characterId) {
                 var characterId = characters[index].id;
-
-                Modular.to.pushNamed(
-                  '${CharacterDetails.screenRoute}/$characterId',
+                Navigator.pushNamed(
+                  context,
+                  CharacterDetails.screenRoute,
+                  arguments: characterId.toString(),
                 );
               },
             );
