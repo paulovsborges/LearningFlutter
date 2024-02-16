@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routerConfig: Modular.routerConfig,
-      builder: (context, router){
+      builder: (context, router) {
         return SafeArea(child: router!);
       },
     );
