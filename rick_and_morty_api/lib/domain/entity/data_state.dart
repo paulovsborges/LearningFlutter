@@ -6,8 +6,8 @@ class InitialState<Void> extends DataState {}
 
 class LoadingState<Void> extends DataState {}
 
-class Success extends DataState {
-  Success({required this.data});
+class SuccessState extends DataState {
+  SuccessState({required this.data});
 
   final List<Character> data;
 }

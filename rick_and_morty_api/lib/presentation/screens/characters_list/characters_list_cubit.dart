@@ -43,9 +43,8 @@ class CharactersListCubit extends Cubit<DataState> {
 
       var entities = responseEntity.results.map((e) => _mapToEntity(e));
 
-      emit(Success(data: entities.toList()));
+      emit(SuccessState(data: entities.toList()));
     } catch (e) {
-      print(e);
       emit(ErrorState());
     }
   }

@@ -77,9 +77,9 @@ class _MainContent extends StatelessWidget {
       return const Center();
     } else if (state is LoadingState) {
       return const LoadingWidget();
-    } else if (state is Success) {
+    } else if (state is SuccessState) {
       return CharactersList(
-        characters: (state as Success).data,
+        characters: (state as SuccessState).data,
       );
     } else if (state is ErrorState) {
       return const Center(
