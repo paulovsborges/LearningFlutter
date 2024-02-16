@@ -19,13 +19,14 @@ class FirstPage extends StatelessWidget {
                 },
                 child: const Text('To second page')),
             ElevatedButton(
-                onPressed: () {
-                  var number = service.getRandomEvenNumber();
+              onPressed: () {
+                var number = service.getRandomEvenNumber();
 
-                  ScaffoldMessenger.of(context)
-                      .showSnackBar(SnackBar(content: Text("$number")));
-                },
-                child: const Text('Get a even number')),
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text("$number")));
+              },
+              child: const Text('Get a even number'),
+            ),
           ],
         ),
       ),
