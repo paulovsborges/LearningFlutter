@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:locktap/screens/enter_password.dart';
+import 'package:locktap/screens/onboarding/on_boarding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,11 +18,9 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       routes: {
-        '/': (context) => const EnterPassword(),
+        '/': (context) => const OnBoardingScreen(),
       },
-      builder: (context, router) {
-        return SafeArea(child: router!);
-      },
+      debugShowCheckedModeBanner: false,
     );
   }
 }
