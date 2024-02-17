@@ -1,8 +1,10 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:locktap/screens/onboarding/page_indicator.dart';
 import 'package:locktap/screens/onboarding/screenshots_grid.dart';
 import 'package:locktap/util/app_colors.dart';
+import 'package:locktap/util/components/secondary_button.dart';
+
+import '../../util/components/primary_button.dart';
 
 class OnBoardingScreen extends StatelessWidget
     with ScreenshotsGrid, PageIndicator {
@@ -42,6 +44,20 @@ class OnBoardingScreen extends StatelessWidget
               ),
               textAlign: TextAlign.center,
             ),
+          ),
+          PrimaryButton(
+            label: 'Next',
+            btnCallback: () {},
+          ),
+          const SizedBox(
+            height: 5,
+          ),
+          SecondaryButton(
+            label: 'skip',
+            btnCallback: () {},
+          ),
+          const SizedBox(
+            height: 25,
           ),
         ],
       ),
