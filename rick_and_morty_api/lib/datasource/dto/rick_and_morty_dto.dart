@@ -40,18 +40,9 @@ class RickAndMortyResultDTO {
   final String image;
 
   factory RickAndMortyResultDTO.fromJson(Map<String, dynamic> json) {
-    var charactersName = json['name'] as String;
-
-    if (charactersName.length > 15) {
-      try {
-        charactersName =
-            charactersName.replaceRange(15, charactersName.length, '...');
-      } catch (e) {}
-    }
-
     return RickAndMortyResultDTO(
       id: json['id'],
-      name: charactersName,
+      name: json['name'],
       status: json['status'],
       gender: json['gender'],
       image: json['image'],

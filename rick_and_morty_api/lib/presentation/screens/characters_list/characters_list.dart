@@ -13,20 +13,21 @@ class CharactersList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
-          itemCount: characters.length,
-          itemBuilder: (_, index) {
-            return CharacterItem(
-              character: characters[index],
-              onCharacterClick: (characterId) {
-                var characterId = characters[index].id;
-                Navigator.pushNamed(
-                  context,
-                  CharacterDetails.screenRoute,
-                  arguments: characterId.toString(),
-                );
-              },
-            );
-          }),
+        itemCount: characters.length,
+        itemBuilder: (_, index) {
+          return CharacterItem(
+            character: characters[index],
+            onCharacterClick: (characterId) {
+              var characterId = characters[index].id;
+              Navigator.pushNamed(
+                context,
+                CharacterDetails.screenRoute,
+                arguments: characterId.toString(),
+              );
+            },
+          );
+        },
+      ),
     );
   }
 }
