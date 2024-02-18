@@ -4,14 +4,17 @@ import 'package:locktap/main_navigation_state.dart';
 import 'package:locktap/screens/onboarding/page_indicator.dart';
 import 'package:locktap/screens/onboarding/screenshots_grid.dart';
 import 'package:locktap/screens/password/password.dart';
-import 'package:locktap/util/app_colors.dart';
+import 'package:locktap/util/components/primary_text.dart';
 import 'package:locktap/util/components/secondary_button.dart';
 
 import '../../model/onboarding/on_boarding_data.dart';
+import '../../util/app_style.dart';
 import '../../util/components/primary_button.dart';
+import '../../util/components/secondary_text.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+
   static const valueKey = ValueKey('OnBoardingScreen');
 
   @override
@@ -51,26 +54,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
           const SizedBox(
             height: 42,
           ),
-          Text(
-            steps[currentIndex].label,
-            style: const TextStyle(
-              color: Colors.white,
-              fontFamily: 'sf',
-              fontWeight: FontWeight.w600,
-              fontSize: 24,
-            ),
-          ),
+          PrimaryText(label: steps[currentIndex].label),
           Container(
             padding: const EdgeInsets.all(20),
-            child: Text(
-              steps[currentIndex].description,
-              style: const TextStyle(
-                color: AppColors.gray,
-                fontFamily: 'sf',
-                fontWeight: FontWeight.w100,
-                fontSize: 16,
-              ),
-              textAlign: TextAlign.center,
+            child: SecondaryText(
+              description: steps[currentIndex].description,
             ),
           ),
           PrimaryButton(

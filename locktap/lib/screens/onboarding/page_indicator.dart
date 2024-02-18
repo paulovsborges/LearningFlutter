@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:locktap/util/app_colors.dart';
+
+import '../../util/app_style.dart';
 
 mixin PageIndicator {
   Widget buildPageIndicator(int currentIndex) {

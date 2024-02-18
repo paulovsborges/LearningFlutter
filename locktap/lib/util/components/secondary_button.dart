@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:locktap/util/app_colors.dart';
+
+import '../app_style.dart';
 
 class SecondaryButton extends StatelessWidget {
   const SecondaryButton(
