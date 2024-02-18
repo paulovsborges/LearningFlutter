@@ -27,6 +27,12 @@
       <excludeFolder url="file://$MODULE_DIR$/zeus_clone/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/zeus_clone/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/zeus_clone/build" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_modular/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_modular/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_modular/build" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_new_navigator/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_new_navigator/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/learning_new_navigator/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

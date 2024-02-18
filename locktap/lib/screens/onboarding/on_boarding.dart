@@ -4,28 +4,36 @@ import 'package:locktap/screens/onboarding/screenshots_grid.dart';
 import 'package:locktap/util/app_colors.dart';
 import 'package:locktap/util/components/secondary_button.dart';
 
+import '../../model/onboarding/on_boarding_data.dart';
 import '../../util/components/primary_button.dart';
 
 class OnBoardingScreen extends StatelessWidget
     with ScreenshotsGrid, PageIndicator {
-  const OnBoardingScreen({super.key});
+  OnBoardingScreen({super.key});
 
-  Widget _buildBottomSheetView() {
+  final List<OnBoardingData> steps = [
+    OnBoardingData.firstStep,
+    OnBoardingData.secondStep,
+    OnBoardingData.thirdStep,
+  ];
+
+  int currentIndex = 2;
+
+  Widget _buildBottomSheetView(int currentIndex) {
     return Container(
-      // height: 300,
       color: AppColors.secondaryBackground,
       child: Column(
         children: [
           const SizedBox(
             height: 10,
           ),
-          buildPageIndicator(),
+          buildPageIndicator(currentIndex),
           const SizedBox(
             height: 42,
           ),
-          const Text(
-            'Universal data storage',
-            style: TextStyle(
+          Text(
+            steps[currentIndex].label,
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'sf',
               fontWeight: FontWeight.w600,
@@ -34,9 +42,9 @@ class OnBoardingScreen extends StatelessWidget
           ),
           Container(
             padding: const EdgeInsets.all(20),
-            child: const Text(
-              'Relieve yourself of creating and \nmemorizing complex passwords on your own with Locktap',
-              style: TextStyle(
+            child: Text(
+              steps[currentIndex].description,
+              style: const TextStyle(
                 color: AppColors.gray,
                 fontFamily: 'sf',
                 fontWeight: FontWeight.w100,
@@ -72,18 +80,13 @@ class OnBoardingScreen extends StatelessWidget
           Container(
             color: AppColors.backgroundColor,
             child: buildScreenshotsFrid(
-              [
-                'assets/images/onboarding/first_step/img_onboarding_1_1.png',
-                'assets/images/onboarding/first_step/img_onboarding_1_2.png',
-                'assets/images/onboarding/first_step/img_onboarding_1_3.png',
-                'assets/images/onboarding/first_step/img_onboarding_1_4.png',
-              ],
+              steps[currentIndex].screenshots,
             ),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              _buildBottomSheetView(),
+              _buildBottomSheetView(currentIndex),
             ],
           ),
         ],
