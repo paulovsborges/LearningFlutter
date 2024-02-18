@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:locktap/main_navigation_state.dart';
 import 'package:locktap/screens/onboarding/page_indicator.dart';
 import 'package:locktap/screens/onboarding/screenshots_grid.dart';
+import 'package:locktap/screens/password/password.dart';
 import 'package:locktap/util/app_colors.dart';
 import 'package:locktap/util/components/secondary_button.dart';
 
@@ -9,6 +12,7 @@ import '../../util/components/primary_button.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
+  static const valueKey = ValueKey('OnBoardingScreen');
 
   @override
   State<OnBoardingScreen> createState() => _OnBoardingScreenState();
@@ -26,6 +30,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
     setState(() {
       currentIndex++;
     });
+  }
+
+  void _goToPasswordScreen() {
+    var controller = GetIt.I.get<MainNavigationState>();
+    controller.goToScreen(Password());
   }
 
   int currentIndex = 0;
@@ -75,7 +84,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
           ),
           SecondaryButton(
             label: 'skip',
-            btnCallback: () {},
+            btnCallback: () {
+              _goToPasswordScreen();
+            },
           ),
           const SizedBox(
             height: 25,
