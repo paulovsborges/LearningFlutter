@@ -7,17 +7,28 @@ import 'package:locktap/util/components/secondary_button.dart';
 import '../../model/onboarding/on_boarding_data.dart';
 import '../../util/components/primary_button.dart';
 
-class OnBoardingScreen extends StatelessWidget
-    with ScreenshotsGrid, PageIndicator {
-  OnBoardingScreen({super.key});
+class OnBoardingScreen extends StatefulWidget {
+  const OnBoardingScreen({super.key});
 
+  @override
+  State<OnBoardingScreen> createState() => _OnBoardingScreenState();
+}
+
+class _OnBoardingScreenState extends State<OnBoardingScreen>
+    with ScreenshotsGrid, PageIndicator {
   final List<OnBoardingData> steps = [
     OnBoardingData.firstStep,
     OnBoardingData.secondStep,
     OnBoardingData.thirdStep,
   ];
 
-  int currentIndex = 2;
+  void _nextStep() {
+    setState(() {
+      currentIndex++;
+    });
+  }
+
+  int currentIndex = 0;
 
   Widget _buildBottomSheetView(int currentIndex) {
     return Container(
@@ -55,7 +66,9 @@ class OnBoardingScreen extends StatelessWidget
           ),
           PrimaryButton(
             label: 'Next',
-            btnCallback: () {},
+            btnCallback: () {
+              _nextStep();
+            },
           ),
           const SizedBox(
             height: 5,
