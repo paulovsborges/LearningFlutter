@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:locktap/controller/password/password_controller.dart';
 
-import 'main_navigation_state.dart';
+import 'controller/main_navigation_state.dart';
 
 class AppModule {
   AppModule() {
@@ -9,5 +10,6 @@ class AppModule {
 
   void _initialize() {
     GetIt.I.registerSingleton(MainNavigationState());
+    GetIt.I.registerSingleton(PasswordController());
   }
 }

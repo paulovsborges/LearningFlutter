@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
-import 'package:locktap/main_navigation_state.dart';
+import 'package:locktap/controller/main_navigation_state.dart';
 import 'package:locktap/screens/onboarding/page_indicator.dart';
 import 'package:locktap/screens/onboarding/screenshots_grid.dart';
 import 'package:locktap/screens/password/password.dart';
