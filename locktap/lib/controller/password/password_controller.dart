@@ -5,7 +5,7 @@ class PasswordController extends Cubit<PasswordState> {
       : super(PasswordState(
           step: PasswordStep.create,
           createdPassword: '',
-          isCreatedPasswordValid: false,
+          isCreatedPasswordValid: true,
         ));
 
   void updateStep(PasswordStep newStep) {

@@ -11,7 +11,7 @@ class PasswordTextField extends StatefulWidget {
 }
 
 class _PasswordTextField extends State<PasswordTextField> {
-  final TextEditingController _controller = TextEditingController(text: '');
+  final TextEditingController _textFieldController = TextEditingController(text: '');
   final int passwordMaxLength = 4;
 
   @override
@@ -19,7 +19,7 @@ class _PasswordTextField extends State<PasswordTextField> {
     super.initState();
   }
 
-  Widget _buildCharacterIndicator(bool isFilled) {
+  Widget _buildFilledCharIndicator(bool isFilled) {
     Color backgroundColor;
 
     if (isFilled) {
@@ -34,7 +34,6 @@ class _PasswordTextField extends State<PasswordTextField> {
     );
   }
 
-  String currentTextValue = '';
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -79,14 +78,12 @@ class _PasswordTextField extends State<PasswordTextField> {
               focusNode: _focusNode,
               onChanged: (text) {
                 setState(() {
-                  currentTextValue = text;
-
                   if (text.length == passwordMaxLength) {
                     var controller = GetIt.I.get<PasswordController>();
 
                     switch (controller.state.step) {
                       case PasswordStep.create:
-                        _controller.clear();
+                        _textFieldController.clear();
                         controller.goToRepeatPassword(text);
                       case PasswordStep.repeat:
                         controller.validateCreatedPassword(text);
@@ -106,7 +103,7 @@ class _PasswordTextField extends State<PasswordTextField> {
                 });
               },
               keyboardType: TextInputType.number,
-              controller: _controller,
+              controller: _textFieldController,
               style: const TextStyle(
                 color: Colors.transparent,
                 decorationColor: Colors.transparent,
@@ -118,10 +115,10 @@ class _PasswordTextField extends State<PasswordTextField> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildCharacterIndicator(currentTextValue.isNotEmpty),
-                  _buildCharacterIndicator(currentTextValue.length > 1),
-                  _buildCharacterIndicator(currentTextValue.length > 2),
-                  _buildCharacterIndicator(currentTextValue.length == 4),
+                  _buildFilledCharIndicator(_textFieldController.value.text.isNotEmpty),
+                  _buildFilledCharIndicator(_textFieldController.value.text.length > 1),
+                  _buildFilledCharIndicator(_textFieldController.value.text.length > 2),
+                  _buildFilledCharIndicator(_textFieldController.value.text.length == 4),
                 ],
               ),
             ),
