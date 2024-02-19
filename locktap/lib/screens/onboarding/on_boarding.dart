@@ -30,6 +30,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen>
   ];
 
   void _nextStep() {
+    if (currentIndex == steps.length - 1) {
+      _goToPasswordScreen();
+      return;
+    }
+
     setState(() {
       currentIndex++;
     });

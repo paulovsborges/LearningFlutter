@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 
 class MainNavigationController extends Cubit<AppScreensState> {
-  MainNavigationController() : super(PasswordScreenState());
+  MainNavigationController() : super(OnBoardingScreenState());
 
   void goToScreen(AppScreensState nextScreen) {
     emit(nextScreen);
