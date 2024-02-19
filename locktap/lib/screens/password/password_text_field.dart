@@ -27,18 +27,6 @@ class PasswordTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color borderColor;
-
-    if (passwordState.focusNode.hasFocus) {
-      borderColor = AppColors.lightBlue;
-    } else {
-      borderColor = Colors.transparent;
-    }
-
-    if (passwordState.step == PasswordStep.repeat &&
-        !passwordState.isCreatedPasswordValid) {
-      borderColor = AppColors.error;
-    }
 
     return Container(
       height: 52,
@@ -48,10 +36,10 @@ class PasswordTextField extends StatelessWidget {
           Radius.circular(30),
         ),
         border: Border(
-          top: BorderSide(color: borderColor),
-          bottom: BorderSide(color: borderColor),
-          left: BorderSide(color: borderColor),
-          right: BorderSide(color: borderColor),
+          top: BorderSide(color: passwordState.borderColor),
+          bottom: BorderSide(color: passwordState.borderColor),
+          left: BorderSide(color: passwordState.borderColor),
+          right: BorderSide(color: passwordState.borderColor),
         ),
         color: AppColors.gray200,
       ),

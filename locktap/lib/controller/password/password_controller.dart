@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:locktap/util/app_style.dart';
 
 class PasswordController extends Cubit<PasswordState> {
   PasswordController()
@@ -10,6 +12,7 @@ class PasswordController extends Cubit<PasswordState> {
           focusNode: FocusNode(),
           textEditingController: TextEditingController(),
           lastFilledIndex: 0,
+          borderColor: Colors.transparent,
         ));
 
   void updateStep(PasswordStep newStep) {
@@ -18,11 +21,10 @@ class PasswordController extends Cubit<PasswordState> {
 
   void goToRepeatPassword(String password) {
     emit(state.copy(
-      step: PasswordStep.repeat,
-      lastFilledIndex: 0,
-      textEditingController: state.textEditingController..clear(),
-      createdPassword: password
-    ));
+        step: PasswordStep.repeat,
+        lastFilledIndex: 0,
+        textEditingController: state.textEditingController..clear(),
+        createdPassword: password));
   }
 
   void validateCreatedPassword(String repeatedPassword) {
@@ -31,9 +33,25 @@ class PasswordController extends Cubit<PasswordState> {
     var isCreatedPasswordValid = createdPassword == repeatedPassword;
 
     if (isCreatedPasswordValid) {
-      emit(state.copy(step: PasswordStep.enter, lastFilledIndex: 0));
+      emit(state.copy(
+        step: PasswordStep.enter,
+        lastFilledIndex: 0,
+        textEditingController: state.textEditingController..clear(),
+        borderColor: AppColors.lightBlue,
+      ));
     } else {
-      emit(state.copy(isCreatedPasswordValid: isCreatedPasswordValid));
+      Color? borderColor;
+
+      if (state.step == PasswordStep.repeat) {
+        borderColor = AppColors.error;
+      } else {
+        borderColor = null;
+      }
+      emit(state.copy(
+        isCreatedPasswordValid: isCreatedPasswordValid,
+        borderColor: borderColor,
+        lastFilledIndex: repeatedPassword.length,
+      ));
     }
   }
 
@@ -52,13 +70,15 @@ class PasswordController extends Cubit<PasswordState> {
   }
 
   void dismissNodeFocus() {
-    state.focusNode.unfocus();
-    emit(state);
+    emit(state.copy(
+      focusNode: state.focusNode..unfocus(),
+      borderColor: Colors.transparent,
+    ));
   }
 
   void onRequestFocus() {
     // state.focusNode.requestFocus();
-    emit(state);
+    emit(state.copy(borderColor: AppColors.lightBlue));
   }
 }
 
@@ -70,6 +90,7 @@ class PasswordState {
     required this.focusNode,
     required this.textEditingController,
     required this.lastFilledIndex,
+    required this.borderColor,
   });
 
   final PasswordStep step;
@@ -77,6 +98,7 @@ class PasswordState {
   final bool isCreatedPasswordValid;
   final FocusNode focusNode;
   final TextEditingController textEditingController;
+  final Color borderColor;
 
   final int lastFilledIndex;
 
@@ -87,6 +109,7 @@ class PasswordState {
     FocusNode? focusNode = null,
     TextEditingController? textEditingController = null,
     int? lastFilledIndex = null,
+    Color? borderColor = null,
   }) {
     return PasswordState(
       step: step ?? this.step,
@@ -97,6 +120,7 @@ class PasswordState {
       textEditingController:
           textEditingController ?? this.textEditingController,
       lastFilledIndex: lastFilledIndex ?? this.lastFilledIndex,
+      borderColor: borderColor ?? this.borderColor,
     );
   }
 }
