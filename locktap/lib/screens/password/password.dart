@@ -6,6 +6,7 @@ import 'package:locktap/screens/password/password_text_field.dart';
 import 'package:locktap/util/components/primary_text.dart';
 import 'package:locktap/util/components/secondary_text.dart';
 
+import '../../controller/password/password_state.dart';
 import '../../util/app_style.dart';
 
 class PasswordScreen extends StatelessWidget {

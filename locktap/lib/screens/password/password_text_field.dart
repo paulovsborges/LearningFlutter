@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:locktap/controller/password/password_controller.dart';
 
+import '../../controller/password/password_state.dart';
 import '../../util/app_style.dart';
 
 class PasswordTextField extends StatelessWidget {

@@ -17,7 +17,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -73,15 +72,16 @@ class _MyApp extends StatelessWidget {
                 child: PasswordScreen(),
                 key: PasswordScreen.valueKey,
               ),
-            Home() =>
-              const MaterialPage(child: HomeScreen(), key: HomeScreen.valueKey),
+            Home() => const MaterialPage(
+                child: HomeScreen(),
+                key: HomeScreen.valueKey,
+              ),
             AppScreens() => const MaterialPage(
                 child: Placeholder(),
               ),
           }
         ],
         onPopPage: (route, result) {
-          print('## ${route.settings.name}');
           return route.didPop(result);
         },
       ),
