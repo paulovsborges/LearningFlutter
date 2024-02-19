@@ -64,7 +64,9 @@ class _PasswordScreen extends StatelessWidget {
                       const SizedBox(
                         height: 45,
                       ),
-                      const PasswordTextField(),
+                      PasswordTextField(
+                        passwordState: state,
+                      ),
                     ],
                   )
                 ],

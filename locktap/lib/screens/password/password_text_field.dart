@@ -4,20 +4,11 @@ import 'package:locktap/controller/password/password_controller.dart';
 
 import '../../util/app_style.dart';
 
-class PasswordTextField extends StatefulWidget {
-  const PasswordTextField({super.key});
+class PasswordTextField extends StatelessWidget {
+  PasswordTextField({required this.passwordState});
 
-  _PasswordTextField createState() => _PasswordTextField();
-}
-
-class _PasswordTextField extends State<PasswordTextField> {
-  final TextEditingController _textFieldController = TextEditingController(text: '');
   final int passwordMaxLength = 4;
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  final PasswordState passwordState;
 
   Widget _buildFilledCharIndicator(bool isFilled) {
     Color backgroundColor;
@@ -34,21 +25,18 @@ class _PasswordTextField extends State<PasswordTextField> {
     );
   }
 
-  final FocusNode _focusNode = FocusNode();
-
   @override
   Widget build(BuildContext context) {
     Color borderColor;
 
-    if (_focusNode.hasFocus) {
+    if (passwordState.focusNode.hasFocus) {
       borderColor = AppColors.lightBlue;
     } else {
       borderColor = Colors.transparent;
     }
 
-    var state = GetIt.I.get<PasswordController>().state;
-
-    if (state.step == PasswordStep.repeat && !state.isCreatedPasswordValid) {
+    if (passwordState.step == PasswordStep.repeat &&
+        !passwordState.isCreatedPasswordValid) {
       borderColor = AppColors.error;
     }
 
@@ -75,35 +63,21 @@ class _PasswordTextField extends State<PasswordTextField> {
               cursorColor: Colors.transparent,
               enableInteractiveSelection: false,
               maxLength: passwordMaxLength,
-              focusNode: _focusNode,
+              focusNode: passwordState.focusNode,
+              controller: passwordState.textEditingController,
               onChanged: (text) {
-                setState(() {
-                  if (text.length == passwordMaxLength) {
-                    var controller = GetIt.I.get<PasswordController>();
-
-                    switch (controller.state.step) {
-                      case PasswordStep.create:
-                        _textFieldController.clear();
-                        controller.goToRepeatPassword(text);
-                      case PasswordStep.repeat:
-                        controller.validateCreatedPassword(text);
-                      case PasswordStep.enter:
-                    }
-                  }
-                });
+                var controller = GetIt.I.get<PasswordController>();
+                controller.onPasswordChanged(text);
               },
               onTap: () {
-                setState(() {
-                  // isFocused = true;
-                });
+                var controller = GetIt.I.get<PasswordController>();
+                controller.onRequestFocus();
               },
               onTapOutside: (event) {
-                setState(() {
-                  _focusNode.unfocus();
-                });
+                var controller = GetIt.I.get<PasswordController>();
+                controller.dismissNodeFocus();
               },
               keyboardType: TextInputType.number,
-              controller: _textFieldController,
               style: const TextStyle(
                 color: Colors.transparent,
                 decorationColor: Colors.transparent,
@@ -115,10 +89,18 @@ class _PasswordTextField extends State<PasswordTextField> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildFilledCharIndicator(_textFieldController.value.text.isNotEmpty),
-                  _buildFilledCharIndicator(_textFieldController.value.text.length > 1),
-                  _buildFilledCharIndicator(_textFieldController.value.text.length > 2),
-                  _buildFilledCharIndicator(_textFieldController.value.text.length == 4),
+                  _buildFilledCharIndicator(
+                    passwordState.lastFilledIndex > 0,
+                  ),
+                  _buildFilledCharIndicator(
+                    passwordState.lastFilledIndex > 1,
+                  ),
+                  _buildFilledCharIndicator(
+                    passwordState.lastFilledIndex > 2,
+                  ),
+                  _buildFilledCharIndicator(
+                    passwordState.lastFilledIndex > 3,
+                  ),
                 ],
               ),
             ),
