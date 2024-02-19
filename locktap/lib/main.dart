@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
-import 'package:locktap/controller/main_navigation_state.dart';
+import 'package:locktap/controller/main_navigation_controller.dart';
 import 'package:locktap/screens/home/home_screen.dart';
 import 'package:locktap/screens/onboarding/on_boarding.dart';
 import 'package:locktap/screens/password/password.dart';
@@ -26,8 +26,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: BlocProvider(
-        create: (context) => GetIt.I.get<MainNavigationState>(),
-        child: BlocBuilder<MainNavigationState, AppScreens>(
+        create: (context) => GetIt.I.get<MainNavigationController>(),
+        child: BlocBuilder<MainNavigationController, AppScreensState>(
           builder: (context, state) {
             return _MyApp(
               screen: state,
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
 class _MyApp extends StatelessWidget {
   _MyApp({super.key, required this.screen});
 
-  final AppScreens screen;
+  final AppScreensState screen;
   final _navigatorKey = GlobalKey<NavigatorState>();
 
   @override
@@ -64,19 +64,19 @@ class _MyApp extends StatelessWidget {
             // key: OnBoardingScreen.valueKey,
           ),
           switch (screen) {
-            OnBoarding() => const MaterialPage(
+            OnBoardingScreenState() => const MaterialPage(
                 child: OnBoardingScreen(),
                 key: OnBoardingScreen.valueKey,
               ),
-            Password() => const MaterialPage(
+            PasswordScreenState() => const MaterialPage(
                 child: PasswordScreen(),
                 key: PasswordScreen.valueKey,
               ),
-            Home() => const MaterialPage(
+            HomeScreenState() => const MaterialPage(
                 child: HomeScreen(),
                 key: HomeScreen.valueKey,
               ),
-            AppScreens() => const MaterialPage(
+            AppScreensState() => const MaterialPage(
                 child: Placeholder(),
               ),
           }

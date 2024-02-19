@@ -5,7 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:locktap/controller/password/password_state.dart';
 import 'package:locktap/util/app_style.dart';
 
-import '../main_navigation_state.dart';
+import '../main_navigation_controller.dart';
 
 class PasswordController extends Cubit<PasswordState> {
   PasswordController()
@@ -86,7 +86,7 @@ class PasswordController extends Cubit<PasswordState> {
   }
 
   void _goToHome() {
-    var controller = GetIt.I.get<MainNavigationState>();
-    controller.goToScreen(Home());
+    var controller = GetIt.I.get<MainNavigationController>();
+    controller.goToScreen(HomeScreenState());
   }
 }
