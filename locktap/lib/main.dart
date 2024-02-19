@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:locktap/controller/main_navigation_state.dart';
+import 'package:locktap/screens/home/home_screen.dart';
 import 'package:locktap/screens/onboarding/on_boarding.dart';
 import 'package:locktap/screens/password/password.dart';
 
@@ -72,6 +73,8 @@ class _MyApp extends StatelessWidget {
                 child: PasswordScreen(),
                 key: PasswordScreen.valueKey,
               ),
+            Home() =>
+              const MaterialPage(child: HomeScreen(), key: HomeScreen.valueKey),
             AppScreens() => const MaterialPage(
                 child: Placeholder(),
               ),

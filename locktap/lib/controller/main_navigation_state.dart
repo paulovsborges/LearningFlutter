@@ -13,3 +13,5 @@ abstract class AppScreens {}
 class OnBoarding extends AppScreens {}
 
 class Password extends AppScreens {}
+
+class Home extends AppScreens {}
