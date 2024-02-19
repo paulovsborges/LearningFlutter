@@ -3,12 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:locktap/controller/password/password_state.dart';
+import 'package:locktap/model/userData/user_data.dart';
+import 'package:locktap/repository/localStorageRepository/local_storage_repository.dart';
 import 'package:locktap/util/app_style.dart';
 
 import '../main_navigation_controller.dart';
 
 class PasswordController extends Cubit<PasswordState> {
-  PasswordController()
+  PasswordController({required this.localStorageRepository})
       : super(PasswordState(
           step: PasswordStep.create,
           createdPassword: '',
@@ -18,6 +20,8 @@ class PasswordController extends Cubit<PasswordState> {
           lastFilledIndex: 0,
           borderColor: Colors.transparent,
         ));
+
+  final LocalStorageRepository localStorageRepository;
 
   void updateStep(PasswordStep newStep) {
     emit(state.copy(step: newStep));
@@ -85,7 +89,14 @@ class PasswordController extends Cubit<PasswordState> {
     emit(state.copy(borderColor: AppColors.lightBlue));
   }
 
-  void _goToHome() {
+  void _goToHome() async {
+    await localStorageRepository.saveData(UserData(
+        createdPassword: 'createdPassword', hasAlreadySeenOnboarding: false));
+
+    var testing = await localStorageRepository.getData();
+
+    print("## data from preferences $testing");
+
     var controller = GetIt.I.get<MainNavigationController>();
     controller.goToScreen(HomeScreenState());
   }

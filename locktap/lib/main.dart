@@ -9,8 +9,8 @@ import 'package:locktap/screens/password/password.dart';
 import 'app_module.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   AppModule();
-
   runApp(const MyApp());
 }
 
