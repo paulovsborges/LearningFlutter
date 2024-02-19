@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 
 class PasswordState {
@@ -22,22 +21,22 @@ class PasswordState {
   final int lastFilledIndex;
 
   PasswordState copy({
-    PasswordStep? step = null,
-    String? createdPassword = null,
-    bool? isCreatedPasswordValid = null,
-    FocusNode? focusNode = null,
-    TextEditingController? textEditingController = null,
-    int? lastFilledIndex = null,
-    Color? borderColor = null,
+    PasswordStep? step,
+    String? createdPassword,
+    bool? isCreatedPasswordValid,
+    FocusNode? focusNode,
+    TextEditingController? textEditingController,
+    int? lastFilledIndex,
+    Color? borderColor,
   }) {
     return PasswordState(
       step: step ?? this.step,
       createdPassword: createdPassword ?? this.createdPassword,
       isCreatedPasswordValid:
-      isCreatedPasswordValid ?? this.isCreatedPasswordValid,
+          isCreatedPasswordValid ?? this.isCreatedPasswordValid,
       focusNode: focusNode ?? this.focusNode,
       textEditingController:
-      textEditingController ?? this.textEditingController,
+          textEditingController ?? this.textEditingController,
       lastFilledIndex: lastFilledIndex ?? this.lastFilledIndex,
       borderColor: borderColor ?? this.borderColor,
     );
@@ -54,4 +53,3 @@ enum PasswordStep {
   final String title;
   final String subtitle;
 }
-
