@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
-class FavoritesScreen extends StatelessWidget {
-  const FavoritesScreen({super.key});
+class SupportScreen extends StatelessWidget {
+  const SupportScreen({super.key});
 
-  static const String routeName = '/favorites';
+  static const String routeName = '/support';
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue[400],
+      color: Colors.yellow[400],
       child: const Center(
         child: Text(
-          'Favorite screen',
+          'support screen',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),

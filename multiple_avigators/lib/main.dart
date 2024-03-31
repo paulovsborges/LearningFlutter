@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:multiple_avigators/screens/home/home_first_screen.dart';
+import 'package:multiple_avigators/bottom_nav_container.dart';
+import 'package:multiple_avigators/screens/favorites_screen.dart';
+import 'package:multiple_avigators/screens/settings_screen.dart';
+import 'package:multiple_avigators/screens/support_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +18,25 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int? currentSelectedIndex;
 
+  final GlobalKey<NavigatorState> bottomNavNavigatorKey = GlobalKey();
+
   void _updateIndex(int index) {
+    switch (index) {
+      case 0:
+        bottomNavNavigatorKey.currentState?.pushNamed(SupportScreen.routeName);
+        break;
+      case 1:
+        bottomNavNavigatorKey.currentState
+            ?.pushNamed(FavoritesScreen.routeName);
+        break;
+      case 2:
+        bottomNavNavigatorKey.currentState?.pushNamed(SettingsScreen.routeName);
+        break;
+      default:
+        bottomNavNavigatorKey.currentState?.popUntil((route) => route.isFirst);
+        break;
+    }
+
     setState(() {
       currentSelectedIndex = currentSelectedIndex != index ? index : null;
     });
@@ -30,7 +51,9 @@ class _MyAppState extends State<MyApp> {
         useMaterial3: true,
       ),
       home: Scaffold(
-        body: const HomeFirstScreen(),
+        body: BottomNavContainer(
+          navigatorKey: bottomNavNavigatorKey,
+        ),
         bottomNavigationBar: MainBottomNav(
           currentSelectedIndex: currentSelectedIndex,
           onItemClick: _updateIndex,
