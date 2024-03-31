@@ -7,23 +7,26 @@ class FavoritesDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.blue[100],
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const Text(
-            'Favorite details screen',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('Go back'),
-          ),
-        ],
-      ),
+    return Scaffold(
+      backgroundColor: Colors.blue[100],
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Favorite details screen',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Go back'),
+            ),
+          ],
+        ),
+      )
     );
   }
 }

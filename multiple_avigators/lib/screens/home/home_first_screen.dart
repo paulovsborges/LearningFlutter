@@ -4,7 +4,7 @@ import 'package:multiple_avigators/screens/home/home_second_screen.dart';
 class HomeFirstScreen extends StatelessWidget {
   const HomeFirstScreen({super.key});
 
-  static const String routeName = '/';
+  static const String routeName = '/home';
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multiple_avigators/bottom_nav_container.dart';
-import 'package:multiple_avigators/main_bottom_nav.dart';
-import 'package:multiple_avigators/screens/favorites/favorites_screen.dart';
-import 'package:multiple_avigators/screens/settings_screen.dart';
-import 'package:multiple_avigators/screens/support_screen.dart';
+import 'package:multiple_avigators/screens/favorites/favorites_details_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,35 +14,9 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  int? currentSelectedIndex;
-
-  final GlobalKey<NavigatorState> bottomNavNavigatorKey = GlobalKey();
   final GlobalKey<NavigatorState> mainNavNavigatorKey = GlobalKey();
 
-  void _updateIndex(int index) {
-    setState(() {
-      currentSelectedIndex = currentSelectedIndex != index ? index : null;
-      _updateRoute();
-    });
-  }
-
-  void _updateRoute() {
-    switch (currentSelectedIndex) {
-      case 0:
-        bottomNavNavigatorKey.currentState?.pushNamed(SupportScreen.routeName);
-        break;
-      case 1:
-        bottomNavNavigatorKey.currentState
-            ?.pushNamed(FavoritesScreen.routeName);
-        break;
-      case 2:
-        bottomNavNavigatorKey.currentState?.pushNamed(SettingsScreen.routeName);
-        break;
-      default:
-        bottomNavNavigatorKey.currentState?.popUntil((route) => route.isFirst);
-        break;
-    }
-  }
+  bool canPop = true;
 
   @override
   Widget build(BuildContext context) {
@@ -56,15 +27,31 @@ class _MyAppState extends State<MyApp> {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Scaffold(
-        body: BottomNavContainer(
-          navigatorKey: bottomNavNavigatorKey,
-        ),
-        bottomNavigationBar: MainBottomNav(
-          currentSelectedIndex: currentSelectedIndex,
-          onItemClick: _updateIndex,
+      home: PopScope(
+        onPopInvoked: (didPop){
+
+        },
+        canPop: false,
+        child: Navigator(
+          initialRoute: BottomNavContainer.routeName,
+          onGenerateRoute: (settings) {
+            switch (settings.name) {
+              case FavoritesDetailsScreen.routeName:
+                return _generateRoute(const FavoritesDetailsScreen());
+              default:
+                return _generateRoute(const BottomNavContainer());
+            }
+          },
         ),
       ),
+    );
+  }
+
+  MaterialPageRoute _generateRoute(Widget child) {
+    return MaterialPageRoute(
+      builder: (_) {
+        return child;
+      },
     );
   }
 }
