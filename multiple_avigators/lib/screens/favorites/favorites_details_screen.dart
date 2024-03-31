@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:multiple_avigators/screens/home/home_second_screen.dart';
 
-class HomeFirstScreen extends StatelessWidget {
-  const HomeFirstScreen({super.key});
+class FavoritesDetailsScreen extends StatelessWidget {
+  const FavoritesDetailsScreen({super.key});
 
-  static const String routeName = '/';
+  static const String routeName = '/favorites_details';
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.red[100],
+      color: Colors.blue[100],
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           const Text(
-            'Home first screen',
+            'Favorite details screen',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.pushNamed(context, HomeSecondScreen.routeName);
+              Navigator.pop(context);
             },
-            child: const Text('Next screen'),
-          )
+            child: const Text('Go back'),
+          ),
         ],
       ),
     );
