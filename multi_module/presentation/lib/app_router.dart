@@ -18,7 +18,9 @@ class AppRouter extends StatelessWidget {
           GoRoute(
             path: SplashPage.routeName,
             builder: (routeContext, state) {
-              return const SplashPage();
+              return SplashPage(
+                presenter: routeContext.read(),
+              );
             },
           ),
           GoRoute(
