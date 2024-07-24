@@ -63,6 +63,12 @@
       <excludeFolder url="file://$MODULE_DIR$/multiple_avigators/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/multiple_avigators/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/multiple_avigators/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
