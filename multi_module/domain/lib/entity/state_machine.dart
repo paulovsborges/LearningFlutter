@@ -2,18 +2,22 @@ abstract class StateMachine {}
 
 abstract class ProgressState implements StateMachine {}
 
-class ProgressLoadingState implements ProgressState {}
+final class ProgressLoadingState implements ProgressState {
+  const ProgressLoadingState();
+}
 
-class ProgressIdleState implements ProgressState {}
+final class ProgressIdleState implements ProgressState {
+  const ProgressIdleState();
+}
 
-class Success<T> implements ProgressState {
-  Success({required this.data});
+final class Success<T> implements ProgressState {
+  const Success({required this.data});
 
   final T data;
 }
 
-class Error implements ProgressState {
-  Error(this.exception);
+final class Error implements ProgressState {
+  const Error(this.exception);
 
   final Exception exception;
 }
