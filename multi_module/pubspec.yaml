@@ -38,6 +38,8 @@ dependencies:
 
   domain:
     path: domain
+  presentation:
+    path: presentation
 
   flutter_bloc: ^8.1.4
   bloc: ^8.1.3
