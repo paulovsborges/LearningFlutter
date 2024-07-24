@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:presentation/features/login/login_page.dart';
 import 'package:presentation/features/splash/splash_presenter.dart';
 
-class SplashPage extends StatelessWidget {
+class SplashPage extends StatefulWidget {
   const SplashPage({
     super.key,
     required this.presenter,
@@ -16,6 +16,20 @@ class SplashPage extends StatelessWidget {
   final SplashPresenter presenter;
 
   @override
+  State<SplashPage> createState() => _SplashPageState();
+}
+
+class _SplashPageState extends State<SplashPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      widget.presenter.fetchInitialConfiguration();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -24,15 +38,13 @@ class SplashPage extends StatelessWidget {
             const Spacer(),
             const Text('Splash page'),
             BlocConsumer<SplashPresenter, SplashState>(
-              bloc: presenter,
-              listener: (_, state){
-                if(state.state is SuccessState){
+              bloc: widget.presenter,
+              listener: (_, state) {
+                if (state.state is SuccessState) {
                   context.pushReplacement(LoginPage.routeName);
                 }
 
-                if(state.state is ErrorState){
-
-                }
+                if (state.state is ErrorState) {}
               },
               builder: (internalContext, state) {
                 String label = 'idle';
@@ -54,12 +66,6 @@ class SplashPage extends StatelessWidget {
 
                 return Text(label);
               },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                presenter.fetchInitialConfiguration();
-              },
-              child: const Text('make request'),
             ),
             const Spacer(),
           ],
