@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presentation/features/common/app_assets.dart';
-import 'package:presentation/features/login/login_page.dart';
+import 'package:presentation/features/login/register/register_page.dart';
 import 'package:presentation/features/splash/splash_presenter.dart';
 
 class SplashPage extends StatefulWidget {
@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
       body: BlocListener<SplashPresenter, SplashState>(
         listener: (_, state) {
           if (state.state is SuccessState) {
-            context.pushReplacement(LoginPage.routeName);
+            context.pushReplacement(RegisterPage.routeName);
           }
         },
         child: Column(

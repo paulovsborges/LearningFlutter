@@ -3,8 +3,8 @@ import 'package:presentation/features/common/app_assets.dart';
 import 'package:presentation/features/common/widgets/primary_button_widget.dart';
 import 'package:presentation/features/common/widgets/primary_text_field.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class RegisterPage extends StatelessWidget {
+  const RegisterPage({super.key});
 
   static const String routeName = '/login_page';
 
@@ -28,7 +28,9 @@ class LoginPage extends StatelessWidget {
               const Spacer(),
               Container(
                 height: MediaQuery.of(context).size.height * 0.5,
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(16), color: Colors.white),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    color: Colors.white),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
