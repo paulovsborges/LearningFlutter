@@ -7,7 +7,7 @@ class MainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  const AppBinding(
+    return const AppBinding(
       child: MaterialApp(
         home: AppRouter(),
         debugShowCheckedModeBanner: false,
