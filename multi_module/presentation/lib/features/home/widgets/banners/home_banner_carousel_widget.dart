@@ -1,31 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:presentation/features/home/widgets/banners/carousel_index_indicator_widget.dart';
+import 'package:presentation/features/home/widgets/banners/home_banner_widget.dart';
 
-class HomeBannerCarouselWidget extends StatelessWidget {
-  HomeBannerCarouselWidget({
+class HomeBannerCarouselWidget extends StatefulWidget {
+  const HomeBannerCarouselWidget({
     super.key,
     required this.banners,
   });
 
-  final List<Widget> banners;
+  final List<String> banners;
 
-  final CarouselController _controller = CarouselController();
-  final CarouselIndexChangedNotifier _carouselIndexChangedNotifier =
-      CarouselIndexChangedNotifier();
+  @override
+  State<HomeBannerCarouselWidget> createState() =>
+      _HomeBannerCarouselWidgetState();
+}
+
+class _HomeBannerCarouselWidgetState extends State<HomeBannerCarouselWidget> {
+  final _CarouselIndexChangedNotifier _carouselIndexChangedNotifier =
+      _CarouselIndexChangedNotifier();
+
+  final PageController _carouselController = PageController();
+
+  bool userDidNotInteractWithPage = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _carouselController.addListener(() {
+      _carouselIndexChangedNotifier.onIndexChanged(
+        _carouselController.page?.toInt() ?? 0,
+      );
+    });
+
+    _startPageChangeLooping();
+  }
+
+  void _startPageChangeLooping() async {
+    while (userDidNotInteractWithPage) {
+      await Future.delayed(const Duration(seconds: 2));
+
+      int nextIndex = _carouselIndexChangedNotifier.value + 1;
+
+      if (nextIndex > widget.banners.length - 1) {
+        nextIndex = 0;
+      }
+
+      _carouselController.animateToPage(
+        nextIndex,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.ease,
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        CarouselSlider(
-          carouselController: _controller,
-          items: banners,
-          options: CarouselOptions(
-            autoPlay: true,
-            onPageChanged: (index, _) {
-              _carouselIndexChangedNotifier.onIndexChanged(index);
+        SizedBox(
+          height: MediaQuery.of(context).size.height * 0.25,
+          child: GestureDetector(
+            onPanCancel: () {
+              userDidNotInteractWithPage = false;
             },
+            child: PageView.builder(
+              controller: _carouselController,
+              itemCount: widget.banners.length,
+              itemBuilder: (internalContext, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: HomeBannerWidget(
+                    assetPath: widget.banners[index],
+                  ),
+                );
+              },
+            ),
           ),
         ),
         Positioned(
@@ -39,7 +89,7 @@ class HomeBannerCarouselWidget extends StatelessWidget {
                 valueListenable: _carouselIndexChangedNotifier,
                 builder: (_, int currentIndex, ___) {
                   return CarouselIndexIndicatorWidget(
-                    totalCount: banners.length,
+                    totalCount: widget.banners.length,
                     currentIndex: currentIndex,
                   );
                 },
@@ -52,10 +102,11 @@ class HomeBannerCarouselWidget extends StatelessWidget {
   }
 }
 
-class CarouselIndexChangedNotifier extends ValueNotifier<int> {
-  CarouselIndexChangedNotifier() : super(0);
+class _CarouselIndexChangedNotifier extends ValueNotifier<int> {
+  _CarouselIndexChangedNotifier() : super(0);
 
   void onIndexChanged(int index) {
+    if (index == value) return;
     value = index;
     notifyListeners();
   }

@@ -25,12 +25,12 @@ class HomePage extends StatelessWidget {
                 NCageLabels.homeTitle,
                 style: Theme.of(context).primaryTextTheme.bodyLarge,
               ),
-              HomeBannerCarouselWidget(
-                banners: const [
-                  HomeBannerWidget(assetPath: NCageAssets.dummyBanner_1),
-                  HomeBannerWidget(assetPath: NCageAssets.dummyBanner_2),
-                  HomeBannerWidget(assetPath: NCageAssets.dummyBanner_3),
-                  HomeBannerWidget(assetPath: NCageAssets.dummyBanner_4),
+              const HomeBannerCarouselWidget(
+                banners: [
+                  NCageAssets.dummyBanner_1,
+                  NCageAssets.dummyBanner_2,
+                  NCageAssets.dummyBanner_3,
+                  NCageAssets.dummyBanner_4,
                 ],
               ),
             ],
