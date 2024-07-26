@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presentation/features/common/app_assets.dart';
+import 'package:presentation/features/common/ncage_assets.dart';
 import 'package:presentation/features/common/widgets/primary_button_widget.dart';
 import 'package:presentation/features/common/widgets/primary_text_field.dart';
 import 'package:presentation/features/splash/splash_page.dart';
@@ -19,7 +19,7 @@ class RegisterPage extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.asset(
-                  ZeusAssets.splashBackground,
+                  NCageAssets.splashBackground,
                   fit: BoxFit.fitHeight,
                 ),
               ),

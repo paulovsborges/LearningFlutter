@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:presentation/features/common/ncage_theme.dart';
 import 'package:presentation/features/home/home_module.dart';
 import 'package:presentation/features/login/login_module.dart';
 import 'package:presentation/features/splash/splash_module.dart';
@@ -11,6 +12,9 @@ class AppRouter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      theme: NCageTheme.lightTheme(),
+      themeMode: ThemeMode.light,
+
       debugShowCheckedModeBanner: false,
       routerConfig: GoRouter(
         initialLocation: SplashPage.routeName,
