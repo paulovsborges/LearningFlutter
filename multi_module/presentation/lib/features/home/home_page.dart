@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:presentation/features/common/ncage_assets.dart';
 import 'package:presentation/features/common/ncage_labels.dart';
+import 'package:presentation/features/common/widgets/catalog/home_catalog_section_widget.dart';
 import 'package:presentation/features/common/widgets/search_text_field.dart';
 import 'package:presentation/features/home/widgets/banners/home_banner_carousel_widget.dart';
 import 'package:presentation/features/home/widgets/filterShortcut/filters_list_widget.dart';
@@ -53,6 +54,14 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 const FiltersListWidget(),
+                const SizedBox(height: 32),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    minHeight: 200,
+                    maxHeight: 300,
+                  ),
+                  child: const HomeCatalogSectionWidget(),
+                )
               ],
             ),
           ),

@@ -10,6 +10,7 @@ class NCageAssets{
   static const String dummyBanner_2 = '$_imagesPath/nazare.jpg';
   static const String dummyBanner_3 = '$_imagesPath/sddefault.jpg';
   static const String dummyBanner_4 = '$_imagesPath/xiJNw50v_400x400.jpg';
+  static const String dummyProductImage = '$_imagesPath/nic-cage-a-outra-face_widexl.jpg';
   static const String epiFilterIcon = '$_iconsPath/epi.svg';
 
 }

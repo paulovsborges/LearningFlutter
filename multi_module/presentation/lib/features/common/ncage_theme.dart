@@ -8,17 +8,26 @@ class NCageTheme {
       scaffoldBackgroundColor: NCageColors.whiteF7F7F8,
       primaryColor: NCageColors.green008A45,
       primaryTextTheme: theme.primaryTextTheme.copyWith(
-        bodyLarge: TextStyle(
-          color: NCageColors.black2D2E33,
-          fontWeight: FontWeight.w700,
-          fontSize: 32,
-        ),
-        displayMedium: TextStyle(
-          color: NCageColors.black2D2E33,
-          fontWeight: FontWeight.normal,
-          fontSize: 16,
-        )
-      ),
+          bodyLarge: TextStyle(
+            color: NCageColors.black2D2E33,
+            fontWeight: FontWeight.w700,
+            fontSize: 32,
+          ),
+          bodyMedium: TextStyle(
+            color: NCageColors.black2D2E33,
+            fontWeight: FontWeight.w700,
+            fontSize: 24,
+          ),
+          bodySmall: TextStyle(
+            color: NCageColors.black2D2E33,
+            fontWeight: FontWeight.w700,
+            fontSize: 16,
+          ),
+          displayMedium: TextStyle(
+            color: NCageColors.black2D2E33,
+            fontWeight: FontWeight.normal,
+            fontSize: 16,
+          )),
     );
   }
 }

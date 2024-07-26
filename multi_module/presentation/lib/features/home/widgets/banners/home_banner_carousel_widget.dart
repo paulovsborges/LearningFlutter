@@ -31,16 +31,20 @@ class _HomeBannerCarouselWidgetState extends State<HomeBannerCarouselWidget> {
   void initState() {
     super.initState();
 
-    _carouselController.addListener(() {
-      _carouselIndexChangedNotifier.onIndexChanged(
-        _carouselController.page?.toInt() ?? 0,
-      );
-    });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _carouselController.addListener(() {
+        _carouselIndexChangedNotifier.onIndexChanged(
+          _carouselController.page?.toInt() ?? 0,
+        );
+      });
 
-    _startPageChangeLooping();
+      _startPageChangeLooping();
+    });
   }
 
   void _startPageChangeLooping() async {
+    if (!mounted) return;
+
     while (userDidNotInteractWithPage) {
       await Future.delayed(widget.autoPlayInterval);
 
