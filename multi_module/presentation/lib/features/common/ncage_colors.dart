@@ -7,4 +7,5 @@ class NCageColors {
   static Color gray454F63 = const Color(0xFF454F63);
   static Color black2D2E33 = const Color(0xFF2D2E33);
   static Color whiteF7F7F8 = const Color(0xFFF7F7F8);
+  static Color whiteEDEEF0 = const Color(0xFFEDEEF0);
 }

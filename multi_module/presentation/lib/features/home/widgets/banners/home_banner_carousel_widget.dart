@@ -6,9 +6,13 @@ class HomeBannerCarouselWidget extends StatefulWidget {
   const HomeBannerCarouselWidget({
     super.key,
     required this.banners,
+    required this.containerHeight,
+    this.autoPlayInterval = const Duration(seconds: 5),
   });
 
   final List<String> banners;
+  final double containerHeight;
+  final Duration autoPlayInterval;
 
   @override
   State<HomeBannerCarouselWidget> createState() =>
@@ -38,7 +42,7 @@ class _HomeBannerCarouselWidgetState extends State<HomeBannerCarouselWidget> {
 
   void _startPageChangeLooping() async {
     while (userDidNotInteractWithPage) {
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(widget.autoPlayInterval);
 
       int nextIndex = _carouselIndexChangedNotifier.value + 1;
 
@@ -59,7 +63,7 @@ class _HomeBannerCarouselWidgetState extends State<HomeBannerCarouselWidget> {
     return Stack(
       children: [
         SizedBox(
-          height: MediaQuery.of(context).size.height * 0.25,
+          height: widget.containerHeight,
           child: GestureDetector(
             onPanCancel: () {
               userDidNotInteractWithPage = false;

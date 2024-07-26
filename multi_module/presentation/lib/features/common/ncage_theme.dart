@@ -13,6 +13,11 @@ class NCageTheme {
           fontWeight: FontWeight.w700,
           fontSize: 32,
         ),
+        displayMedium: TextStyle(
+          color: NCageColors.black2D2E33,
+          fontWeight: FontWeight.normal,
+          fontSize: 16,
+        )
       ),
     );
   }
