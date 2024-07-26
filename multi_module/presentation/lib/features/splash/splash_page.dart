@@ -43,7 +43,7 @@ class _SplashPageState extends State<SplashPage> {
           children: [
             Expanded(
               child: Image.asset(
-                AppAssets.splashBackground,
+                ZeusAssets.splashBackground,
                 fit: BoxFit.fitHeight,
               ),
             ),

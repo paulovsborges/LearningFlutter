@@ -1,4 +1,4 @@
-class AppAssets{
+class ZeusAssets{
   static const String _assetsPath = 'presentation/assets';
   static const String _imagesPath = '$_assetsPath/images';
 

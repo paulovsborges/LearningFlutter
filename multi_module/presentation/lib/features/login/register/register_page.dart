@@ -19,7 +19,7 @@ class RegisterPage extends StatelessWidget {
             children: [
               Expanded(
                 child: Image.asset(
-                  AppAssets.splashBackground,
+                  ZeusAssets.splashBackground,
                   fit: BoxFit.fitHeight,
                 ),
               ),
