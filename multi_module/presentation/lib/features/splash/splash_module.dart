@@ -40,7 +40,7 @@ class SplashModule {
             child: SplashPage(presenter: GetIt.I.get()),
           );
         },
-        onExit: (context) async {
+        onExit: (_, __) async {
           GetIt.I.resetLazySingleton<InitialConfigRepository>();
           GetIt.I.resetLazySingleton<SplashPresenter>();
           return true;

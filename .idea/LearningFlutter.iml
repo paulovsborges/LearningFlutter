@@ -69,6 +69,18 @@
       <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/multi_module/domain/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/datasource/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/datasource/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/datasource/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/ios/.symlinks/plugins/sqflite/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/presentation/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/presentation/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/multi_module/presentation/build" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
