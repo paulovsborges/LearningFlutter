@@ -36,7 +36,7 @@ class _SplashPageState extends State<SplashPage> {
       body: BlocListener<SplashPresenter, SplashState>(
         listener: (_, state) {
           if (state.state is SuccessState) {
-            NCageNavigationHelper.router.go(HomePage.routeName);
+            context.myRouterReplace(HomePage.routeName);
           }
         },
         child: Column(

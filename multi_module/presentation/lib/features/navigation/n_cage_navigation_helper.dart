@@ -1,41 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:presentation/features/navigation/bottom_nav_module.dart';
-import 'package:presentation/features/splash/splash_module.dart';
-import 'package:presentation/features/splash/splash_page.dart';
 
-class NCageNavigationHelper {
-  static final NCageNavigationHelper _instance =
-      NCageNavigationHelper._internal();
+extension NCageNavigationHelper on BuildContext{
 
-  static NCageNavigationHelper get instance => _instance;
-
-  static late final GoRouter router;
-
-  static final GlobalKey<NavigatorState> parentNavigatorKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> homeTabNavigatorKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> searchTabNavigatorKey =
-      GlobalKey<NavigatorState>();
-  static final GlobalKey<NavigatorState> settingsTabNavigatorKey =
-      GlobalKey<NavigatorState>();
-
-  BuildContext get context =>
-      router.routerDelegate.navigatorKey.currentContext!;
-
-  factory NCageNavigationHelper() {
-    return _instance;
+  void myRouterPop(){
+    GoRouter.of(this).pop();
   }
 
-  NCageNavigationHelper._internal() {
-    router = GoRouter(
-      navigatorKey: parentNavigatorKey,
-      initialLocation: SplashPage.routeName,
-      routes: [
-        ...SplashModule.routes(),
-        ...BottomNavModule.routes(),
-      ],
-    );
+  void myRouterNavigate(String route){
+    GoRouter.of(this).push(route);
+  }
+
+  void myRouterReplace(String route){
+    GoRouter.of(this).go(route);
   }
 }
