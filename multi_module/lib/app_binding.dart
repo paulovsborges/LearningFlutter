@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
+import 'package:presentation/features/login/auth_presenter.dart';
 import 'package:presentation/features/splash/splash_presenter.dart';
 
 class AppBinding extends StatelessWidget {
@@ -13,19 +14,17 @@ class AppBinding extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => _DummyCubit()),
         BlocProvider(
           create: (_) => SplashPresenter(
             repository: GetIt.I.get(),
-            // repository: GetIt.instance.get(),
+            authPresenter: GetIt.I.get(),
           ),
+        ),
+        BlocProvider(
+          create: (_) => GetIt.I.get<AuthPresenter>(),
         ),
       ],
       child: child,
     );
   }
-}
-
-class _DummyCubit extends Cubit<int> {
-  _DummyCubit() : super(0);
 }

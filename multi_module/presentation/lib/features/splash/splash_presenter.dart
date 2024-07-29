@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:domain/entity/state_machine.dart';
 import 'package:domain/repository/initialConfig/initial_config_repository.dart';
-import 'package:flutter/material.dart';
+import 'package:presentation/features/login/auth_presenter.dart';
 
 class SplashState {
   const SplashState({this.state = const ProgressIdleState()});
@@ -16,9 +16,13 @@ class SplashState {
 }
 
 class SplashPresenter extends Cubit<SplashState> {
-  SplashPresenter({required this.repository}) : super(const SplashState());
+  SplashPresenter({
+    required this.repository,
+    required this.authPresenter,
+  }) : super(const SplashState());
 
   final InitialConfigRepository repository;
+  final AuthPresenter authPresenter;
 
   void fetchInitialConfiguration() async {
     emit(state.copyWith(state: StateMachine.loadingState()));
