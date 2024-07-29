@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presentation/features/splash/splash_page.dart';
-import 'package:presentation/features/splash/splash_presenter.dart';
 
 class SplashModule {
   static List<GoRoute> routes() {
@@ -15,7 +14,6 @@ class SplashModule {
         },
         onExit: (_, __) async {
           GetIt.I.resetLazySingleton<InitialConfigRepository>();
-          GetIt.I.resetLazySingleton<SplashPresenter>();
           return true;
         },
       ),
