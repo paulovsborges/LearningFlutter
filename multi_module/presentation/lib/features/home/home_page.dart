@@ -3,10 +3,8 @@ import 'package:presentation/features/common/ncage_assets.dart';
 import 'package:presentation/features/common/ncage_labels.dart';
 import 'package:presentation/features/common/widgets/catalog/home_catalog_section_widget.dart';
 import 'package:presentation/features/common/widgets/search_text_field.dart';
-import 'package:presentation/features/details/details_page.dart';
 import 'package:presentation/features/home/widgets/banners/home_banner_carousel_widget.dart';
 import 'package:presentation/features/home/widgets/filterShortcut/filters_list_widget.dart';
-import 'package:presentation/features/navigation/n_cage_navigation_helper.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
