@@ -1,4 +1,4 @@
-abstract class StateMachine{
+abstract class StateMachine<R>{
   static ProgressLoadingState loadingState() {
     return const ProgressLoadingState();
   }
@@ -26,10 +26,10 @@ final class ProgressIdleState implements ProgressState {
   const ProgressIdleState();
 }
 
-final class SuccessState<T> implements StateMachine {
+final class SuccessState<R> implements StateMachine<R> {
   const SuccessState({this.data});
 
-  final T? data;
+  final R? data;
 }
 
 final class ErrorState implements ProgressState {
