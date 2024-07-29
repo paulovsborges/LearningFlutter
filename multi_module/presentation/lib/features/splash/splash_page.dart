@@ -2,6 +2,7 @@ import 'package:domain/entity/state_machine.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:presentation/app_router.dart';
 import 'package:presentation/features/common/ncage_assets.dart';
 import 'package:presentation/features/home/home_page.dart';
 import 'package:presentation/features/splash/splash_presenter.dart';
@@ -36,7 +37,7 @@ class _SplashPageState extends State<SplashPage> {
       body: BlocListener<SplashPresenter, SplashState>(
         listener: (_, state) {
           if (state.state is SuccessState) {
-            context.pushReplacement(HomePage.routeName);
+            CustomNavigationHelper.router.go(HomePage.routeName);
           }
         },
         child: Column(
