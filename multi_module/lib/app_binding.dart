@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:presentation/features/splash/splash_presenter.dart';
 
 class AppBinding extends StatelessWidget {
   const AppBinding({super.key, required this.child});
@@ -10,7 +12,15 @@ class AppBinding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-      providers: [BlocProvider(create: (_) => _DummyCubit())],
+      providers: [
+        BlocProvider(create: (_) => _DummyCubit()),
+        BlocProvider(
+          create: (_) => SplashPresenter(
+            repository: GetIt.I.get(),
+            // repository: GetIt.instance.get(),
+          ),
+        ),
+      ],
       child: child,
     );
   }

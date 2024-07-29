@@ -33,12 +33,7 @@ class SplashModule {
       GoRoute(
         path: SplashPage.routeName,
         builder: (routeContext, state) {
-          return BlocProvider<SplashPresenter>(
-            create: (_) {
-              return GetIt.I.get();
-            },
-            child: SplashPage(presenter: GetIt.I.get()),
-          );
+          return SplashPage(presenter: routeContext.read());
         },
         onExit: (_, __) async {
           GetIt.I.resetLazySingleton<InitialConfigRepository>();

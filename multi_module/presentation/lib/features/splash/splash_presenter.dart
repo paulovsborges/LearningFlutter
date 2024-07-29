@@ -26,10 +26,4 @@ class SplashPresenter extends Cubit<SplashState> {
     emit(state.copyWith(state: StateMachine.successState(null)));
     emit(state.copyWith(state: StateMachine.idleState()));
   }
-
-  @override
-  Future<void> close() {
-    // TODO: implement close
-    return super.close();
-  }
 }
