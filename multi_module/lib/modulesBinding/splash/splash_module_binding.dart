@@ -2,6 +2,8 @@ import 'package:datasource/repository/initialConfig/initial_config_mock_reposito
 import 'package:domain/repository/initialConfig/initial_config_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:presentation/features/login/auth_presenter.dart';
+import 'package:presentation/features/splash/splash_presenter.dart';
 
 class SplashModuleBinding {
   static void init() {
@@ -12,6 +14,13 @@ class SplashModuleBinding {
       dispose: (instance) {
         debugPrint('$instance disposed');
       },
+    );
+
+    GetIt.I.registerFactory(
+      () => SplashPresenter(
+        repository: GetIt.I.get(),
+        authPresenter: AuthPresenter(),
+      ),
     );
   }
 }

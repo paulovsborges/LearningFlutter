@@ -14,12 +14,12 @@ class AppBinding extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-          create: (_) => SplashPresenter(
-            repository: GetIt.I.get(),
-            authPresenter: GetIt.I.get(),
-          ),
-        ),
+        // BlocProvider(
+        //   create: (_) => SplashPresenter(
+        //     repository: GetIt.I.get(),
+        //     authPresenter: GetIt.I.get(),
+        //   ),
+        // ),
         BlocProvider(
           create: (_) => GetIt.I.get<AuthPresenter>(),
         ),

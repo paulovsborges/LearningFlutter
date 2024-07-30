@@ -33,21 +33,24 @@ class _SplashPageState extends State<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<SplashPresenter, SplashState>(
-        listener: (_, state) {
-          if (state.state is SuccessState) {
-            context.myRouterReplace(HomePage.routeName);
-          }
-        },
-        child: Column(
-          children: [
-            Expanded(
-              child: Image.asset(
-                NCageAssets.splashBackground,
-                fit: BoxFit.fitHeight,
+      body: BlocProvider(
+        create: (_) => widget.presenter,
+        child: BlocListener<SplashPresenter, SplashState>(
+          listener: (_, state) {
+            if (state.state is SuccessState) {
+              context.myRouterReplace(HomePage.routeName);
+            }
+          },
+          child: Column(
+            children: [
+              Expanded(
+                child: Image.asset(
+                  NCageAssets.splashBackground,
+                  fit: BoxFit.fitHeight,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
