@@ -7,6 +7,7 @@ class MainWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('## build');
     return const AppBinding(
       child: MaterialApp(
         home: AppRouter(),
