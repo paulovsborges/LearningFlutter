@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:presentation/features/details/details_presenter.dart';
 import 'package:presentation/features/navigation/n_cage_navigation_helper.dart';
 
 class DetailsPage extends StatelessWidget {
-  const DetailsPage({super.key});
+  const DetailsPage({
+    super.key,
+    required this.presenter,
+  });
 
   static const String routeName = '/details_page';
+
+  final DetailsPresenter presenter;
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +22,17 @@ class DetailsPage extends StatelessWidget {
           child: const Text('Back'),
         ),
       ),
-      body: const Center(
-        child: Text('Details page'),
+      body: BlocBuilder<DetailsPresenter, DetailsState>(
+        builder: (_, state) {
+          return GestureDetector(
+            onTap: presenter.test,
+            child: Center(
+              child: state.isLoading
+                  ? const CircularProgressIndicator()
+                  : Text('Details page id ${state.id}'),
+            ),
+          );
+        },
       ),
     );
   }

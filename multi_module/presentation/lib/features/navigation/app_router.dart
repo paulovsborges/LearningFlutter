@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presentation/features/common/ncage_theme.dart';
 import 'package:presentation/features/details/details_page.dart';
@@ -23,8 +24,13 @@ class AppRouter extends StatelessWidget {
           GoRoute(
             path: DetailsPage.routeName,
             builder: (routeContext, state) {
-              return const DetailsPage();
+              return DetailsPage(
+                presenter: GetIt.I.get(),
+              );
             },
+            // onExit: (_, __){
+            //   return true;
+            // }
           ),
         ],
       ),

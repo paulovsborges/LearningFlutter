@@ -1,3 +1,4 @@
+import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:presentation/features/home/home_page.dart';
 
@@ -7,7 +8,9 @@ class HomeModule {
       GoRoute(
         path: HomePage.routeName,
         builder: (routeContext, state) {
-          return const HomePage();
+          return HomePage(
+            presenter: GetIt.I.get(),
+          );
         },
       ),
     ];
