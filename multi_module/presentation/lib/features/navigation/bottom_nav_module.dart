@@ -7,6 +7,7 @@ import 'package:presentation/features/account/profile/profile_page.dart';
 import 'package:presentation/features/details/details_presenter.dart';
 import 'package:presentation/features/home/home_page.dart';
 import 'package:presentation/features/navigation/bottom_nav_container_page.dart';
+import 'package:presentation/features/search/search_page.dart';
 
 class BottomNavModule {
   static List<RouteBase> routes() {
@@ -28,9 +29,9 @@ class BottomNavModule {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/search_page',
+                path: SearchPage.routeName,
                 builder: (_, __) {
-                  return const Placeholder();
+                  return SearchPage();
                 },
               ),
             ],
