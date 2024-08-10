@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presentation/features/search/filter_cell.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
@@ -27,25 +28,7 @@ class SearchPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        children: [
-          _buildCell(filters.first)
-        ],
-      ),
-    );
-  }
-
-  Widget _buildCell(String label) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(
-          vertical: 12,
-          horizontal: 16,
-        ),
-        child: Text(label),
+        children: [FilterCell(label: filters.first)],
       ),
     );
   }

@@ -8,7 +8,9 @@ import 'package:presentation/features/splash/splash_module.dart';
 import 'package:presentation/features/splash/splash_page.dart';
 
 class AppRouter extends StatelessWidget {
-  const AppRouter({super.key});
+  const AppRouter({super.key, required this.router});
+
+  final GoRouter router;
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +18,7 @@ class AppRouter extends StatelessWidget {
       theme: NCageTheme.lightTheme(),
       themeMode: ThemeMode.light,
       debugShowCheckedModeBanner: false,
-      routerConfig: GoRouter(
-        initialLocation: SplashPage.routeName,
-        routes: [
-          ...SplashModule.routes(),
-          ...BottomNavModule.routes(),
-          GoRoute(
-            path: DetailsPage.routeName,
-            builder: (routeContext, state) {
-              return DetailsPage(
-                presenter: GetIt.I.get(),
-              );
-            },
-            // onExit: (_, __){
-            //   return true;
-            // }
-          ),
-        ],
-      ),
+      routerConfig: router,
       // routerConfig: NCageNavigationHelper.router,
     );
   }
