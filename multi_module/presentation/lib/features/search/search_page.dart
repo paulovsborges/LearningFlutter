@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presentation/features/search/filter_cell.dart';
+import 'package:presentation/features/search/filters_widget.dart';
 
 class SearchPage extends StatelessWidget {
   SearchPage({super.key});
@@ -27,8 +27,14 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [FilterCell(label: filters.first)],
+      body: Padding(
+        padding: const EdgeInsets.only(left: 20),
+        child: Column(
+          children: [
+            const SizedBox(height: 200),
+            FiltersWidget(filters: filters),
+          ],
+        ),
       ),
     );
   }
